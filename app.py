@@ -1,11 +1,14 @@
-from flask import Flask
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
-def simple_route():
-    return "Hello, User ^_^!"
+def home():
+    return render_template('index.html', company_name="Marketing Company", course_name="Marketing Course", price=100, description="This is a marketing course that teaches you how to market your products effectively.")
 
 @app.route('/about')
-def about_route():
-    return "There is displayed information about the company!"
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
