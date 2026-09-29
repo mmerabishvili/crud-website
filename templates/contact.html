@@ -6,31 +6,39 @@
 
 <h1>Contact Us</h1>
 
+{% if error %}
+    <p class = "error-message">{{ error }}</p>
+{% endif %}
+
+{% if success %}
+    <p class="success-message">{{ success_message }}</p>
+{% endif %}
+
 <p>
     Interested in one of our courses?
     Submit your information and we'll get in touch.
 </p>
 
-<form>
+<form method="POST" action="{{ url_for('contact') }}">
 
     <div class="form-group">
         <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name">
+        <input type="text" id="first_name" name="first_name" maxlength="100" value="{{ request.form.get('first_name', '') }}" required>
     </div>
 
     <div class="form-group">
         <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name">
+        <input type="text" id="last_name" name="last_name" maxlength="100" value="{{ request.form.get('last_name', '') }}" required>
     </div>
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" maxlength="100" value="{{ request.form.get('email', '') }}" >
     </div>
 
     <div class="form-group">
         <label for="phone">Phone</label>
-        <input type="tel" id="phone" name="phone">
+        <input type="tel" id="phone" name="phone" maxlength="20" value="{{ request.form.get('phone', '') }}" required>
     </div>
 
     <button type="submit">Submit</button>
